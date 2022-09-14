@@ -3,11 +3,12 @@ function Back(props) {
  
   return (
     <Link to ={`/invoice/${props.id}`}>
-     <div className="flex text-white px-5 py-5 ">
+      <div className="flex text-white px-5 py-5 "
+      style={props.color}>
       <div>
         <img src="./assets/icon-moon.svg" alt="arrow-left" className="mt-[6px] mr-6" />
       </div>
-      <p className="text-[13px]">Go back</p>
+      <p className="text-[13px] font-bold">Go back</p>
     </div>
     </Link>
   );

@@ -1,8 +1,10 @@
-function FormFrom(props) {
+function FormFrom({id,mode,data,formik}) {
+
+  // console.log(props)
   return (
     <div className="text-[#888EB0] px-6 text-[12px]">
       <div>
-        <h2 className="text-[20px] mb-3 font-bold">Edit #{props.id}</h2>
+        <h2 className="text-[20px] mb-3 font-bold">Edit #{id}</h2>
         <h6 className="text-[12px] text-[#7C5DFA] font-bold">Bill From</h6>
         <div className="mt-3">
           <form action="">
@@ -10,7 +12,9 @@ function FormFrom(props) {
             <br />
             <input
               className="w-80 h-10 rounded-md bg-[#252945] mb-4 pl-2 mt-2"
-              value={props.data.senderAddress.street}
+              style={mode}
+              onChange={formik.handleChange}
+              value={data.senderAddress.street}
               type="text"
               id="Street Address"
             />
@@ -23,9 +27,12 @@ function FormFrom(props) {
                 <br />
                 <input
                   className="w-36 h-10 rounded-md bg-[#252945]  pl-2 mb-4 mt-2"
-                   value={props.data.senderAddress.city}
+                   value={data.senderAddress.city}
                   type="text"
                   id="City"
+              style={mode}
+              onChange={formik.handleChange}
+
                 />
                 <br />
               </div>
@@ -36,9 +43,12 @@ function FormFrom(props) {
                 <br />
                 <input
                   className="w-36 mr-2 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2"
-                   value={props.data.senderAddress.postCode}
+                   value={data.senderAddress.postCode}
                   type="text"
                   id="Post Code"
+                 style={mode}
+              onChange={formik.handleChange}
+
                 />
                 <br />
               </div>
@@ -49,10 +59,13 @@ function FormFrom(props) {
             <br />
             <input
                           className="w-80 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2 "
-                          value={props.data.senderAddress.country}
+                          value={data.senderAddress.country}
               type="text"
               id="Country"
-            />{" "}
+              style={mode}
+              onChange={formik.handleChange}
+
+            />
             <br />
           </form>
         </div>

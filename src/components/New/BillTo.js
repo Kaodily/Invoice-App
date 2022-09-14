@@ -1,5 +1,6 @@
-function FormTo({ handleChange,mode}) {
-
+function FormTo({ handleChange, mode, formik }) {
+  const currentDate = new Date()
+  const createdDate = currentDate.toISOString().slice(0,10)
   return (
     <div className="text-[#888EB0] px-6 text-[12px]">
       <h6 className="text-[12px] text-[#7C5DFA] font-bold mb-3">Bill To</h6>
@@ -12,12 +13,10 @@ function FormTo({ handleChange,mode}) {
         <input
           name="clientName"
           className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2"
-         style={mode}
-
- 
+          style={mode}
           type="text"
           id='Client"s Email'
-          onChange={handleChange}
+          onChange={formik.handleChange}
         />
         <br />
         <label className=" " htmlFor="Client's Name">
@@ -27,12 +26,10 @@ function FormTo({ handleChange,mode}) {
         <input
           name="clientEmail"
           className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2"
-         style={mode}
-
- 
+          style={mode}
           type="text"
           id='Client"s Email'
-          onChange={handleChange}
+          onChange={formik.handleChange}
         />
         <br />
         <label className=" " htmlFor="Street Address">
@@ -40,14 +37,12 @@ function FormTo({ handleChange,mode}) {
         </label>
         <br />
         <input
-          name='street'
+          name="clientAddress.street"
           className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2"
-         style={mode}
-
- 
+          style={mode}
           type="text"
           id="Street Address"
-          onChange={handleChange}
+          onChange={formik.handleChange}
         />
         <br />
         <div className="flex justify-between">
@@ -57,16 +52,13 @@ function FormTo({ handleChange,mode}) {
             </label>
             <br />
             <input
-              name="city"
+              name="clientAddress.city"
               className="w-36 pl-2 h-10 rounded-md  mb-4 mt-2"
-         style={mode}
-
- 
+              style={mode}
               type="text"
               id="City"
-              onChange={handleChange}
+              onChange={formik.handleChange}
             />
-
           </div>
           <div>
             <label className=" " htmlFor="Post Code">
@@ -74,14 +66,12 @@ function FormTo({ handleChange,mode}) {
             </label>
             <br />
             <input
-              name="clientPostCode"
+              name="clientAddress.postCode"
               className="w-36 pl-2 mr-2 h-10 rounded-md  mb-4 mt-2"
-         style={mode}
-
- 
+              style={mode}
               type="text"
               id="Post Code"
-              onChange={handleChange}
+              onChange={formik.handleChange}
             />
             <br />
           </div>
@@ -91,13 +81,12 @@ function FormTo({ handleChange,mode}) {
         </label>
         <br />
         <input
-          name="clientCountry"
-                  style={mode}
-                  className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2 "
-          
+          name="clientAddress.country"
+          style={mode}
+          className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2 "
           type="text"
           id="Country"
-          onChange={handleChange}
+          onChange={formik.handleChange}
         />
         <br />
         <label className=" " htmlFor="Invoice Date">
@@ -106,12 +95,13 @@ function FormTo({ handleChange,mode}) {
         <br />
         <input
           name="createdAt"
-                  style={mode}
-                  className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2 "
-          
-          type="Date"
+          style={mode}
+          className="w-80 placeholder-gray-500 pl-2 h-10 rounded-md  mb-4 mt-2 "
+          type="text"
           id="Invoice Date"
-          onChange={handleChange}
+          // onChange={formik.handleChange}
+          value={createdDate}
+          disabled
         />
         <br />
         <label className="" htmlFor="Payment Terms">
@@ -121,12 +111,10 @@ function FormTo({ handleChange,mode}) {
         <select
           name="paymentTerms"
           id="Payment Terms"
-          onChange={handleChange}
+          onChange={formik.handleChange}
           className="w-80 pl-2 h-10 text-[13px] px-2 rounded-md  mb-4 mt-2"
-         style={mode}
-
- 
- >
+          style={mode}
+        >
           <option value="Net 30days">Net 30days</option>
           <option value="Net 60days">Net 60days</option>
           <option value="Net 90days">Net 90days</option>
@@ -137,12 +125,11 @@ function FormTo({ handleChange,mode}) {
         <br />
         <input
           name="description"
-                  style={mode}
-                  className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2 "
-          
+          style={mode}
+          className="w-80 pl-2 h-10 rounded-md  mb-4 mt-2 "
           type="text"
           id="Project / Description"
-          onChange={handleChange}
+          onChange={formik.handleChange}
         />
         <br />
       </form>

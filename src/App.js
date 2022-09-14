@@ -1,121 +1,251 @@
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
-import Header from "./components/Homepage/Header";
+import Header from "./components/Header";
 import Home from "./components/Homepage/Home";
-import EmptyInvoice from "./components/SecondPage/EmptyInvoice";
-import Invoice from "./components/ThirdPage/Invoice";
+import EmptyInvoice from "./components/EmptyHomePage/EmptyInvoice";
+import Invoice from "./components/InvoiceInfo/Invoice";
 import Edit from "./components/EditPage/Edit";
 import data from "./components/data.json";
 import NewInvoice from "./components/New/NewInvoice";
-
-
-// import data from "./components/data.json";
+import {useFormik} from 'formik'
 
 function App() {
-  
-  const [datas, setDatas] = useState(data)
-  
-
-  const onDelete = (id) => {
-    setDatas(prev => prev.filter(item => item.id !== id))
-    
+  let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  let numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+  let a = ''
+  let b = ''
+  const random = (id) => {
+    return Math.floor(Math.random() * id.length)
   }
-  // const handleClicker = (status) => {
-  //   setDatas(prev => status === 'pending' ? prev.status = 'paid' : prev.status = 'paid' )
-  //   // status = 'hello'
-  //   // console.log('hello')
-  // }
-   
-  const [dataFrom, setDataFrom] = useState( {
-    createdAt: "",
-    paymentDue: "",
-    description: "",
-    paymentTerms: '',
-    clientName: "",
-    clientEmail: "",
-    status: "",
-    senderAddress: {
-      street: "",
-      city: "",
-      postCode: "",
-      country: ""
-    },
-    clientAddress: {
-      street: "",
-      city: "",
-      postCode: "",
-      country: ""
-    },
-    items: [
-      {
-        name: "",
-        quantity: "",
-        price: "",
-        total: ""
-      }
-    ],
-    total: ""
+   for (let i = 0; i < 2; i++){
+    a += letters[random(letters)]
+  }
+  for (let i = 0; i < 4; i++){
+    b += numbers[random(numbers)]
+  }
+
+
+  const currentDate = new Date()
+  const [datas, setDatas] = useState(data);
+  const createdDate = currentDate.toISOString().slice(0,10)
+  const formik = useFormik({
+    initialValues:{
+      id: `${a}${b}`,
+      createdAt: createdDate,
+      status: '',
+      paymentDue: '',
+      description: "",
+      paymentTerms: "",
+      clientName: "",
+      clientEmail: "",
+     
+      senderAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+      },
+      clientAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+      },
+      items: [
+        {
+          name: "",
+          quantity: "",
+          price: "",
+          total: "",
+        },
+      ],
+    }
   });
-  // console.log(dataFrom);
+  let r = datas.map(item => item)
+  // console.log(r)
+  const editFormik = useFormik({
+    initialValues:{
+      id: ``,
+      createdAt: createdDate,
+      status: '',
+      paymentDue: '',
+      description: "",
+      paymentTerms: "",
+      clientName: r.name,
+      clientEmail: "",
+     
+      senderAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+      },
+      clientAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+      },
+      items: [
+        {
+          name: "",
+          quantity: "",
+          price: "",
+          total: "",
+        },
+      ],
+    }
+  });
+  console.log(editFormik.values)
+  
+  let dueDate ='';
+  const getDueDate = () => {
+  // const currentDate = new Date()
+  if (formik.values.paymentTerms === 'Net 30days') {
+    currentDate.setDate(currentDate.getDate() + 30).toLocaleString()
+   dueDate = currentDate.toISOString().slice(0,10)
+  } else if (formik.values.paymentTerms === 'Net 60days') {
+    currentDate.setDate(currentDate.getDate() + 60).toLocaleString()
+     dueDate =currentDate.toISOString().slice(0,10)
+    // console.log(dueDate)
 
-  const handleChange = (e) => {
-    setDataFrom((prev) => {
-      return {
-        ...prev,
-        [e.target.name]: e.target.value,
-       
-      };
-    });
-
-  };
-  // const newData = () => {
-  //   // setDataFrom(prev => {
-  //   //   return {
-  //   //     ...prev,
-  //   //     status: 'paid',
-  //   //     total: dataFrom.quantity * dataFrom.price,
-  //   //     id:1
-  //   //   }
-  //   // } )
-  //   // console.log(dataFrom)
-  //   // setDatas(prev => {
-  //   //   return [
-  //   //     ...prev,
-  //   //   dataFrom
-  //   //   ]
-  //   // })
-  //   console.log(dataFrom);
-  // }
-  // console.log(datas)
-  const [mode, setMode] = useState('./assets/icon-sun.svg')
-  const [color, setColor] = useState({ backgroundColor: '#141625',color:'white'})
-  const [bgColor, setBgColor] = useState({ backgroundColor: '#1E2139',color: 'white',boxShadow: '3px 3px 5px 0 gray'})
-
-  // let styled= {backgroundColor: 'red' }
-  const modeHandleCick = () => {
-    setMode(prev => prev === './assets/icon-sun.svg' ? './assets/icon-moon.svg' : './assets/icon-sun.svg')
-    setColor(prev => mode === './assets/icon-sun.svg' ? { backgroundColor: '#F8F8FB', color: 'black', transition:'0.5s'} : { backgroundColor: '#141625',color:'white',transition:'0.5s'})
-    setBgColor(prev => mode === './assets/icon-sun.svg' ? { backgroundColor: 'white',color:'black',transition:'0.7s', boxShadow: '3px 3px 5px 0 gray'}:{ backgroundColor: '#1E2139', color:'white',transition:'0.7s',boxShadow: '3px 3px 5px 0 gray'})
+  } else if(formik.values.paymentTerms === 'Net 90days'){
+    currentDate.setDate(currentDate.getDate() + 90).toLocaleString()
+    dueDate =currentDate.toISOString().slice(0,10)
   }
+    return dueDate
+}
+ 
+ 
+  // state for toggling dark and light image
+  const [mode, setMode] = useState("./assets/icon-sun.svg");
+  // state for dark and light mode
+  const [color, setColor] = useState({
+    backgroundColor: "#141625",
+    color: "white",
+  });
+  // state for dark and light mode
+  const [bgColor, setBgColor] = useState({
+    backgroundColor: "#1E2139",
+    color: "white",
+    boxShadow: "3px 3px 5px 0 gray",
+  });
+  // Delete invoice function
+  const onDelete = (id) => {
+    setDatas((prev) => prev.filter((item) => item.id !== id));
+  };
+  
+  //  function to filter invoice data
+  const filterHandleClick = (status) => {
+    if (status === 'all') {
+     setDatas(data)
+    } else if (status === 'paid') {
+      setDatas(prev => data.filter(item => item.status === status))
+    } else if (status === 'pending') {
+      setDatas(prev => data.filter(item => item.status === status))
+    } else if (status === 'draft') {
+      setDatas(prev => data.filter(item => item.status === status))
+    }  
+ }
+  
+  
+ 
+ const dated = getDueDate()
+  const newData = () => {
+    formik.values.status = 'pending'
+    formik.values.paymentDue = dated
+    setDatas([formik.values, ...datas,])
+  }
+  const draftClick = () => {
+    formik.values.status = 'draft'
+    formik.values.paymentDue = dated
+    setDatas([formik.values, ...datas,])
+  }
+    
+    
+  
+
+  // state for toggling dark and light image
+
+  // event listener for light and dark mode
+  const modeHandleCick = () => {
+    setMode((prev) =>
+      prev === "./assets/icon-sun.svg"
+        ? "./assets/icon-moon.svg"
+        : "./assets/icon-sun.svg"
+    );
+    setColor((prev) =>
+      mode === "./assets/icon-sun.svg"
+        ? { backgroundColor: "#F8F8FB", color: "black", transition: "0.5s" }
+        : { backgroundColor: "#141625", color: "white", transition: "0.5s" }
+    );
+    setBgColor((prev) =>
+      mode === "./assets/icon-sun.svg"
+        ? {
+            backgroundColor: "white",
+            color: "black",
+            transition: "0.7s",
+            boxShadow: "3px 3px 5px 0 gray",
+          }
+        : {
+            backgroundColor: "#1E2139",
+            color: "white",
+            transition: "0.7s",
+            boxShadow: "3px 3px 5px 0 gray",
+          }
+    );
+  };
   return (
     <BrowserRouter>
-      <div className="h-full " style={color}>
+      <div className="h-full" style={color}>
         <Header handleClick={modeHandleCick} image={mode} />
-        {/* <img src="./assets/icon-sun.svg" alt="hhhh" /> */}
         <section className="">
-          <Routes> 
-            {datas.length > 0 ? 
-              <Route path="/" element={<Home data={datas} mode={bgColor} color={color} />} />
-              : 
-            <Route path="/" element={<EmptyInvoice data={datas}/>} /> 
-            }
-            <Route path="/invoice/:id" element={<Invoice data={datas} onDelete={onDelete} mode={bgColor} color={color} />} exact />
-            <Route path="/invoice/:id/:Edit" element={<Edit data={datas} />} />
-            <Route path="/New" element={<NewInvoice handleChange={handleChange} mode={bgColor} color={color} />} />
-          </Routes> 
+          <Routes>
+            {datas.length > 0 ? (
+              <Route
+                path="/"
+                element={<Home data={datas} mode={bgColor} color={color} filterHandleClick={filterHandleClick} />}
+              />
+            ) : (
+              <Route
+                path="/"
+                element={<EmptyInvoice data={datas} color={color} />}
+              />
+            )}
+            <Route
+              path="/invoice/:id"
+              element={
+                <Invoice
+                  data={datas}
+                  onDelete={onDelete}
+                  mode={bgColor}
+                  color={color}
+                />
+              }
+              exact
+            />
+            <Route
+              path="/invoice/:id/:Edit"
+              element={<Edit data={datas} mode={bgColor} color={color}
+              formik={editFormik}
+              />}
+            />
+            <Route
+              path="/New"
+              element={
+                <NewInvoice
+                  mode={bgColor}
+                  color={color}
+                  handleClick={newData}
+                  formik={formik}
+                  draftClick={draftClick}
+                />
+              }
+            />
+          </Routes>
         </section>
       </div>
-     </BrowserRouter>
+    </BrowserRouter>
   );
 }
 

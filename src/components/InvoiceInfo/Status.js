@@ -1,6 +1,8 @@
-function Status(props) {
-  let statusStyle;
-  switch (props.info) {
+function Status({mode,info}) {
+    let statusStyle;
+    let statusStyles;
+    
+  switch (info) {
       case 'paid':
           statusStyle = {
               'color': '#33D69F',
@@ -19,13 +21,14 @@ function Status(props) {
               'backgroundColor': '#979797'
           };
           break;
-      
+          default:
+            statusStyle = {
+              backgroundColor: "#fff",
+            }   
   }
-  let statusStyles;
-  switch (props.info) {
+  switch (info) {
       case 'paid':
           statusStyles = {
-              
               'backgroundColor': '#33D69F'
           };
           break;
@@ -39,10 +42,14 @@ function Status(props) {
               'backgroundColor': '#fff'
           };
           break;
+      default:
+            statusStyles = {
+              backgroundColor: "#fff",
+            }
       
   }
   return (
-    <div className=" h-24 mx-8 px-4 text-white rounded-md bg-[#1E2139] flex items-center justify-between" style={props.mode}>
+    <div className=" h-24 mx-8 px-4 text-white rounded-md bg-[#1E2139] flex items-center justify-between" style={mode}>
       <p>Status</p>
       <div className="w-20 text-center flex justify-center item-center rounded-md pt-1 h-9 "
        style={statusStyle}>
@@ -51,7 +58,7 @@ function Status(props) {
           style={statusStyles}
         ></div>
               <p className="text-[12px] mt-1">
-          {props.info.slice(0, 1).toUpperCase() + props.info.slice(1)}
+          {info.slice(0, 1).toUpperCase() + info.slice(1)}
         </p>
     
       </div>

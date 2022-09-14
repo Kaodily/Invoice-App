@@ -1,4 +1,5 @@
-function FormFrom(props) {
+function FormFrom({ mode, formik }) {
+  // console.log(formik)
   return (
     <div className="text-[#888EB0] px-6 text-[12px]">
       <div>
@@ -10,9 +11,9 @@ function FormFrom(props) {
             <br />
             <input
               className="w-80 h-10 rounded-md  mb-4 pl-2 mt-2"
-              style={props.mode}
-              name="streetName"
-              onChange={props.handleChange}
+              style={mode}
+              name="senderAddress.street"
+              onChange={formik.handleChange}
               type="text"
               id="Street Address"
             />
@@ -24,11 +25,11 @@ function FormFrom(props) {
                 </label>
                 <br />
                 <input
-                   style={props.mode}
+                   style={mode}
                   className="w-36 h-10 rounded-md   pl-2 mb-4 mt-2"
-                  name="city"
+                  name="senderAddress.city"
                   type="text"
-                  onChange={props.handleChange}
+                  onChange={formik.handleChange}
                   id="city"
                 />
                 <br />
@@ -39,12 +40,12 @@ function FormFrom(props) {
                 </label>
                 <br />
                 <input
-                  onChange={props.handleChange}
-                  style={props.mode}
+                  onChange={formik.handleChange}
+                  style={mode}
                   className="w-36 mr-2 h-10 rounded-md  pl-2  mb-4 mt-2"
                   type="text"
                   id="Post Code"
-                  name="postCode"
+                  name="senderAddress.postCode"
                 />
                 <br />
               </div>
@@ -54,12 +55,12 @@ function FormFrom(props) {
             </label>
             <br />
             <input
-              onChange={props.handleChange}
+              onChange={formik.handleChange}
               className="w-80 h-10 rounded-md pl-2  mb-4 mt-2 "
-              style={props.mode}
+              style={mode}
               type="text"
               id="Country"
-              name="country"
+              name="senderAddress.country"
             />
             <br />
           </form>

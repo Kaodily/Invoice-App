@@ -4,17 +4,18 @@ import BillFrom from "./BillFrom";
 import BillTo from "./BillTo";
 import Items from "./Items";
 import Button from "./Button";
-// import React from "react";
 
-function NewInvoice({ handleChange,mode,color}) {
+
+function NewInvoice({ mode, color, handleClick, formik, draftClick }) {
   return (
     <div>
       <Back color ={color} />
-      <BillFrom handleChange={handleChange} mode={mode} />
-      <BillTo handleChange={handleChange} mode={mode}/>
-      <Items handleChange={handleChange} mode={mode} />
-      <Button />
+      <BillFrom formik={formik} mode={mode} />
+      <BillTo formik={formik} mode={mode}/>
+      <Items formik={formik} mode={mode}  />
+      <Button mode={mode} handleClick={handleClick} draftClick={draftClick} />
     </div>
   );
 }
 export default NewInvoice;
+ 

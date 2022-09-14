@@ -1,11 +1,11 @@
-import Filter from "../Homepage/Filter";
+import Filter from "../Homepage/Navigation";
 import Illustraton from "./Illustration";
 
-function EmptyInvoice({data}) {
+function EmptyInvoice({data,color}) {
     return (
         <div className="h-screen">
             <Filter data={data.length} />
-            <Illustraton />
+            <Illustraton color={color} />
         </div>
     )
 }
