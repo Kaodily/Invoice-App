@@ -12,7 +12,7 @@ function Home({data,mode,color,filterHandleClick}) {
      setInput(!input)
   }
  return (
-    <div className="h-screen">
+    <div className="h-screen sm:mt-7">
       <section>
            <Navigation handleClick={handleClick} data={data.length} mode={color} />
            <Filtered input={input}

@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-function Items({ formik,mode}) {
+function Items({formik,mode}) {
  
   let obj = [{
     itemName: 'Item Name',
@@ -10,7 +10,6 @@ function Items({ formik,mode}) {
   const [item, setItem] = useState(obj)
   const addHandleClick = () => {
     setItem(prev => [...item, obj])
-    console.log(item)
      
   }
   const deleteHandleClick = (id) => {
@@ -19,7 +18,6 @@ function Items({ formik,mode}) {
   
   
   let total = (formik.values.items[0].quantity && formik.values.items[0].price) ? formik.values.items[0].quantity * formik.values.items[0].price : ''
-  // console.log(total)
   const m = item.map((item, index) => {
     return (
       <div key={index}>
@@ -91,7 +89,6 @@ function Items({ formik,mode}) {
       </div>
     )
   })
-  // console.log(item)
   return (  
      <div className="text-[#888EB0] px-6 py-1 text-[12px]">
        <h4 className="my-4 text-[16px]  font-bold">Item List</h4>

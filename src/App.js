@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import React, { useState } from "react";
 import Header from "./components/Header";
 import Home from "./components/Homepage/Home";
@@ -17,10 +17,10 @@ function App() {
   const random = (id) => {
     return Math.floor(Math.random() * id.length)
   }
-   for (let i = 0; i < 2; i++){
+  for (let i = 0; i < 2; i++) {
     a += letters[random(letters)]
   }
-  for (let i = 0; i < 4; i++){
+  for (let i = 0; i < 4; i++) {
     b += numbers[random(numbers)]
   }
 
@@ -59,44 +59,10 @@ function App() {
           total: "",
         },
       ],
+      total : ''
     }
   });
-  let r = datas.map(item => item)
-  // console.log(r)
-  const editFormik = useFormik({
-    initialValues:{
-      id: ``,
-      createdAt: createdDate,
-      status: '',
-      paymentDue: '',
-      description: "",
-      paymentTerms: "",
-      clientName: r.name,
-      clientEmail: "",
-     
-      senderAddress: {
-        street: "",
-        city: "",
-        postCode: "",
-        country: "",
-      },
-      clientAddress: {
-        street: "",
-        city: "",
-        postCode: "",
-        country: "",
-      },
-      items: [
-        {
-          name: "",
-          quantity: "",
-          price: "",
-          total: "",
-        },
-      ],
-    }
-  });
-  console.log(editFormik.values)
+  
   
   let dueDate ='';
   const getDueDate = () => {
@@ -162,7 +128,11 @@ function App() {
     setDatas([formik.values, ...datas,])
   }
     
-    
+  const editHandleClick = (info) => {
+  let filtered = data.filter(item => item.id === info.values.id)
+   setDatas(prev => prev.filter(item => item.id !== info.values.id))
+    // setDatas([info.values, ...datas,])
+  }  
   
 
   // state for toggling dark and light image
@@ -227,7 +197,7 @@ function App() {
             <Route
               path="/invoice/:id/:Edit"
               element={<Edit data={datas} mode={bgColor} color={color}
-              formik={editFormik}
+                handleClick ={editHandleClick}
               />}
             />
             <Route

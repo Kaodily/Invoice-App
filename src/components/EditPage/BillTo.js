@@ -24,9 +24,10 @@ function FormTo({ data, formik, mode }) {
         <br />
         <input
           className="w-80 pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2"
-          value={data.clientEmail}
+          value={formik.values.clientEmail}
           onChange={formik.handleChange}
           type="text"
+          name="clientEmail"
           id='Client"s Email'
           style={mode}
         />
@@ -37,11 +38,13 @@ function FormTo({ data, formik, mode }) {
         <br />
         <input
           className="w-80 pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2"
-          value={data.clientAddress.street}
+          value={formik.values.clientAddress.street}
           onChange={formik.handleChange}
           type="text"
           id="Street Address"
           style={mode}
+          name="clientAddress.street"
+
         />
         <br />
         <div className="flex justify-between">
@@ -52,11 +55,13 @@ function FormTo({ data, formik, mode }) {
             <br />
             <input
               className="w-36 pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2"
-              value={data.clientAddress.city}
+              value={formik.values.clientAddress.city}
               onChange={formik.handleChange}
               type="text"
               id="City"
               style={mode}
+          name="clientAddress.city"
+
             />
             <br />
           </div>
@@ -67,11 +72,13 @@ function FormTo({ data, formik, mode }) {
             <br />
             <input
               className="w-36 pl-2 mr-2 h-10 rounded-md bg-[#252945] mb-4 mt-2"
-              value={data.clientAddress.postCode}
+              value={formik.values.clientAddress.postCode}
               onChange={formik.handleChange}
               style={mode}
               type="text"
               id="Post Code"
+              name="clientAddress.postCode"
+
             />
             <br />
           </div>
@@ -82,11 +89,13 @@ function FormTo({ data, formik, mode }) {
         <br />
         <input
           className="w-80 pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2 "
-          value={data.clientAddress.country}
+          value={formik.values.clientAddress.country}
           onChange={formik.handleChange}
           style={mode}
           type="text"
           id="Country"
+          name="clientAddress.country"
+
         />
         <br />
         <label className=" " htmlFor="Invoice Date">
@@ -95,9 +104,8 @@ function FormTo({ data, formik, mode }) {
         <br />
         <input
           className="w-80 pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2 "
-          value={data.createdAt}
-          onChange={formik.handleChange}
-          type="Date"
+          value={formik.values.createdAt}
+          type="text"
           style={mode}
           id="Invoice Date"
           disabled
@@ -108,7 +116,7 @@ function FormTo({ data, formik, mode }) {
         </label>
         <br />
         <select
-          name="Payment Terms"
+          name="paymentTerms"
           id="Payment Terms"
           style={mode}
           onChange={formik.handleChange}
@@ -124,10 +132,12 @@ function FormTo({ data, formik, mode }) {
         <br />
         <input
           className="w-80 pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2 "
-          value={data.description}
+          value={formik.values.description}
           onChange={formik.handleChange}
           type="text"
           style={mode}
+          name="description"
+
           id="Project / Description"
         />
         <br />

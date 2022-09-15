@@ -47,7 +47,14 @@ function InvoiceData({ data, mode }) {
         backgroundColor: "#fff",
       };
   }
-  const looped = data.items.length >= 2 ? data.items.map(item => item.price * item.quantity).reduce((a, b) => a + b) : data.items.map(item => item.price * item.quantity).reduce((a,b)=>a +b)
+  const looped =
+    data.items.length >= 2
+      ? data.items
+          .map((item) => item.price * item.quantity)
+          .reduce((a, b) => a + b)
+      : data.items
+          .map((item) => item.price * item.quantity)
+          .reduce((a, b) => a + b);
   // console.log(looped)
   return (
     <Link
@@ -55,20 +62,22 @@ function InvoiceData({ data, mode }) {
         pathname: `/invoice/${data.id}`,
       }}
     >
-      <div className="p-4 m-5 rounded-md" style={mode}>
-        <div className="flex justify-between mb-5">
+      <div className="p-4 m-5 sm:mt-8 rounded-md" style={mode}>
+        <div className="flex justify-between ">
+        <div className=" md:flex md:justify-start mb-5">
           <p className="text-[13px] font-bold">#{data.id}</p>
+            <h4 className="text-[15px] font-bold mt-1">£{looped}</h4>
+          </div>
           <p className="text-[13px]  font-bold text-[#888EB0]">
             {data.clientName}
           </p>
         </div>
-        <div className="flex justify-between">
-          <div>
-            <p className="text-[12px]  font-bold text-[#888EB0]">
+        <div className ="">
+        
+          <div className="flex justify-between">
+          <p className="text-[12px]  font-bold text-[#888EB0]">
               Due {data.paymentDue}
             </p>
-            <h4 className="text-[15px] font-bold mt-1">£{looped}</h4>
-          </div>
           <div
             className="w-20 text-center flex justify-center item-center rounded-md pt-1 h-9 bg-black"
             style={statusStyle}
@@ -80,6 +89,7 @@ function InvoiceData({ data, mode }) {
             <p className="text-[12px] mt-1">
               {data.status.slice(0, 1).toUpperCase() + data.status.slice(1)}
             </p>
+          </div>
           </div>
         </div>
       </div>

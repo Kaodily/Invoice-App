@@ -1,5 +1,4 @@
-function FormFrom({id,mode,data,formik}) {
-
+function FormFrom({ id, mode, data, formik }) {
   // console.log(props)
   return (
     <div className="text-[#888EB0] px-6 text-[12px]">
@@ -14,7 +13,8 @@ function FormFrom({id,mode,data,formik}) {
               className="w-80 h-10 rounded-md bg-[#252945] mb-4 pl-2 mt-2"
               style={mode}
               onChange={formik.handleChange}
-              value={data.senderAddress.street}
+              value={formik.values.senderAddress.street}
+             name="senderAddress.street"
               type="text"
               id="Street Address"
             />
@@ -27,12 +27,13 @@ function FormFrom({id,mode,data,formik}) {
                 <br />
                 <input
                   className="w-36 h-10 rounded-md bg-[#252945]  pl-2 mb-4 mt-2"
-                   value={data.senderAddress.city}
+                  value={formik.values.senderAddress.city}
                   type="text"
                   id="City"
-              style={mode}
-              onChange={formik.handleChange}
+                  style={mode}
+          name="senderAddress.city"
 
+                  onChange={formik.handleChange}
                 />
                 <br />
               </div>
@@ -43,12 +44,13 @@ function FormFrom({id,mode,data,formik}) {
                 <br />
                 <input
                   className="w-36 mr-2 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2"
-                   value={data.senderAddress.postCode}
+                  value={formik.values.senderAddress.postCode}
                   type="text"
                   id="Post Code"
-                 style={mode}
-              onChange={formik.handleChange}
+          name="senderAddress.postCode"
 
+                  style={mode}
+                  onChange={formik.handleChange}
                 />
                 <br />
               </div>
@@ -58,13 +60,13 @@ function FormFrom({id,mode,data,formik}) {
             </label>
             <br />
             <input
-                          className="w-80 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2 "
-                          value={data.senderAddress.country}
+              className="w-80 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2 "
+              value={formik.values.senderAddress.country}
               type="text"
               id="Country"
               style={mode}
+          name="senderAddress.country"
               onChange={formik.handleChange}
-
             />
             <br />
           </form>
