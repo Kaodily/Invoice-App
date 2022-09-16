@@ -49,8 +49,8 @@ function Status({mode,info}) {
       
   }
   return (
-    <div className=" h-24 mx-8 px-4 text-white rounded-md bg-[#1E2139] flex items-center justify-between" style={mode}>
-      <p>Status</p>
+    <div className="h-24 mx-8 px-4 text-white rounded-md bg-[#1E2139] flex items-center justify-between" style={mode}>
+      <p className="font-bold text-[13px]">Status </p>
       <div className="w-20 text-center flex justify-center item-center rounded-md pt-1 h-9 "
        style={statusStyle}>
         <div
