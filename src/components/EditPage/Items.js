@@ -22,7 +22,7 @@ function Items({ data, mode, formik }) {
             <label htmlFor="Item Name">Item Name</label>
         <br />
         <input
-          className="w-80 pl-2 h-10 rounded-md mb-4 mt-2 "
+          className="w-[100%] pl-2 h-10 rounded-md mb-4 mt-2 "
           style={mode}
           type="text"
           id="Item Name"
@@ -35,7 +35,7 @@ function Items({ data, mode, formik }) {
                 <label htmlFor="Qty">Quantity</label>
             <br />
             <input
-              className="w-14 pl-4 h-10 rounded-md mb-4 mt-2 mr-3"
+              className="w-[60%] pl-4 h-10 rounded-md mb-4 mt-2 "
               style={mode}
               type="text"
               id="Qty"
@@ -48,7 +48,7 @@ function Items({ data, mode, formik }) {
                 <label htmlFor="Price">Price</label>
             <br />
             <input
-              className="w-20 h-10 rounded-md pl-4 mb-4 mt-2 mr-3"
+              className="w-[60%] h-10 rounded-md pl-4 mb-4 mt-2 "
               style={mode}
               type="text"
               id="Price"
@@ -61,25 +61,23 @@ function Items({ data, mode, formik }) {
           <div>
                 <label htmlFor="Total">Total</label>
             <br />
-          <input className="w-20  h-10 rounded-md pl-4 mb-4 mt-2  mr-12  "
+    
+          <input className="w-[75%]  h-10 rounded-md pl-4 mb-4 mt-2"
               style={mode}
-              // value={total}
               disabled
          />
             <br />
              
           </div>
-
           <div>
               <img
-                onClick={() => deleteHandleClick(item)} 
-              src="./assets/icon-delete.svg"
+              src="./image/icon-delete.svg"
+              onClick={() => deleteHandleClick(item)} 
               alt="delete"
-              className="mt-10"
+              className="mt-10 "
             />
           </div>
         </div>
-        
             </div>
     
       </div>
@@ -91,7 +89,7 @@ function Items({ data, mode, formik }) {
         <label htmlFor="Item Name">Item Name</label>
         <br />
         <input
-          className="w-80 pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2 "
+          className="w-[100%] pl-2 h-10 rounded-md bg-[#252945] mb-4 mt-2 "
           style={mode}
           value={item.name}
           type="text"
@@ -102,10 +100,10 @@ function Items({ data, mode, formik }) {
         <br />
         <div className="flex mb-3 ">
           <div>
-            <label htmlFor="Qty">Qty</label>
+            <label htmlFor="Qty">Quantity</label>
             <br />
             <input
-              className="w-14 pl-4 h-10 rounded-md bg-[#252945] mb-4 mt-2 mr-3"
+              className="w-[60%] pl-4 h-10 rounded-md bg-[#252945] mb-4 mt-2 mr-3"
               style={mode}
               value={item.quantity}
               type="text"
@@ -120,7 +118,7 @@ function Items({ data, mode, formik }) {
             <label htmlFor="Price">Price</label>
             <br />
             <input
-              className="w-20 h-10 rounded-md pl-4 bg-[#252945] mb-4 mt-2 mr-3"
+              className="w-[60%] h-10 rounded-md pl-4 bg-[#252945] mb-4 mt-2 mr-3"
               value={item.price}
               type="text"
               id="Price"
@@ -135,19 +133,23 @@ function Items({ data, mode, formik }) {
             <label htmlFor="Total">Total</label>
             <br />
             <input
-              className="w-20  h-10 rounded-md pl-3 mb-4 mt-2 mr-12 bg-[#141625] "
+              className="w-[75%] h-10 rounded-md pl-3 mb-4 mt-2 mr-12 bg-[#141625] "
               value={item.total}
               type="text"
               id="Total"
               style={mode}
               onChange={formik.handleChange}
               disabled
-            />{" "}
+            />
             <br />
           </div>
 
           <div>
-            <img src="../assets/icon-delete.svg" alt="delete" className="mt-10" />
+            <img 
+             src="./image/icon-delete.svg"
+              alt="delete"
+                onClick={() => deleteHandleClick(item)} 
+              className="mt-10" />
           </div>
         </div>
       </div>

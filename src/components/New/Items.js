@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-// import Del from  "../assets/icon-delete.svg";
 
 function Items({formik,mode}) {
-//  console.log(Del)
   let obj = [{
     itemName: 'Item Name',
     quantity: 'Qty',
@@ -28,7 +26,7 @@ function Items({formik,mode}) {
             <label htmlFor="Item Name">Item Name</label>
         <br />
         <input
-          className="w-80 pl-2 h-10 rounded-md mb-4 mt-2 "
+          className="w-[100%] pl-2 h-10 rounded-md mb-4 mt-2 "
           style={mode}
           type="text"
           id="Item Name"
@@ -41,7 +39,7 @@ function Items({formik,mode}) {
                 <label htmlFor="Qty">Quantity</label>
             <br />
             <input
-              className="w-14 pl-4 h-10 rounded-md mb-4 mt-2 mr-3"
+              className="w-[60%] pl-4 h-10 rounded-md mb-4 mt-2 mr-3"
               style={mode}
               type="text"
               id="Qty"
@@ -54,7 +52,7 @@ function Items({formik,mode}) {
                 <label htmlFor="Price">Price</label>
             <br />
             <input
-              className="w-20 h-10 rounded-md pl-4 mb-4 mt-2 mr-3"
+              className="w-[60%] h-10 rounded-md pl-4 mb-4 mt-2 mr-3"
               style={mode}
               type="text"
               id="Price"
@@ -67,7 +65,7 @@ function Items({formik,mode}) {
           <div>
                 <label htmlFor="Total">Total</label>
             <br />
-          <input className="w-20  h-10 rounded-md pl-4 mb-4 mt-2  mr-12  "
+          <input className="w-[80%]  h-10 rounded-md pl-4 mb-4 mt-2  mr-12  "
               style={mode}
               value={total}
               disabled
@@ -78,10 +76,10 @@ function Items({formik,mode}) {
 
           <div>
               <img
-                onClick={() => deleteHandleClick(item)} 
-              src="../assets/icon-delete.svg"
+              onClick={() => deleteHandleClick(item)} 
+              src="./image/icon-delete.svg"
               alt="delete"
-              className="mt-10"
+              className="mt-10 w-5"
             />
           </div>
         </div>

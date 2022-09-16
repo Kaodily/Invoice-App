@@ -10,7 +10,7 @@ function FormFrom({ mode, formik }) {
             <label htmlFor="Street Address">Street Address</label>
             <br />
             <input
-              className="w-80 h-10 rounded-md  mb-4 pl-2 mt-2"
+              className="w-[100%] h-10 rounded-md  mb-4 pl-2 mt-2"
               style={mode}
               name="senderAddress.street"
               onChange={formik.handleChange}
@@ -20,13 +20,13 @@ function FormFrom({ mode, formik }) {
             <br />
             <div className="flex justify-between">
               <div>
-                <label className=" " htmlFor="City">
+                <label  htmlFor="City">
                   City
                 </label>
                 <br />
                 <input
                    style={mode}
-                  className="w-36 h-10 rounded-md   pl-2 mb-4 mt-2"
+                  className="w-[100%] h-10 rounded-md   pl-2 mb-4 mt-2"
                   name="senderAddress.city"
                   type="text"
                   onChange={formik.handleChange}
@@ -35,14 +35,14 @@ function FormFrom({ mode, formik }) {
                 <br />
               </div>
               <div>
-                <label className=" " htmlFor="Post Code">
+                <label htmlFor="Post Code">
                   Post Code
                 </label>
                 <br />
                 <input
                   onChange={formik.handleChange}
                   style={mode}
-                  className="w-36 mr-2 h-10 rounded-md  pl-2  mb-4 mt-2"
+                  className="w-[100%] mr-2 h-10 rounded-md  pl-2  mb-4 mt-2"
                   type="text"
                   id="Post Code"
                   name="senderAddress.postCode"
@@ -56,7 +56,7 @@ function FormFrom({ mode, formik }) {
             <br />
             <input
               onChange={formik.handleChange}
-              className="w-80 h-10 rounded-md pl-2  mb-4 mt-2 "
+              className="w-[100%] h-10 rounded-md pl-2  mb-4 mt-2 "
               style={mode}
               type="text"
               id="Country"

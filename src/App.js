@@ -18,9 +18,9 @@ function App() {
   let a = ''
   let b = ''
   const body = document.querySelector('body')
-  const backDrop = document.querySelector('.backdrop')
-
-
+ 
+  
+const [backDrop,setBackDrop] = useState({})
   const random = (id) => {
     return Math.floor(Math.random() * id.length)
   }
@@ -32,9 +32,34 @@ function App() {
   }
   const [popup, setPopup] = useState(false);
   const modalHandleClick = () => {
-    backDrop.style.display = 'block'
+    // const backDrop = document.querySelector('.backdrop')
+    setBackDrop({
+    position: 'fixed',
+   top:'0',
+   width:'100vw',
+   height:'100vh',
+   zIndex:'2',
+   backgroundColor:'rgb(0, 0, 0,0.7)',
+   })
     setPopup(!popup);
+    if (popup) {
+      setBackDrop({})
+    } else {
+      setBackDrop({
+       position: 'fixed',
+       top:'0',
+       width:'100vw',
+       height:'100vh',
+       zIndex:'2',
+       backgroundColor:'rgb(0, 0, 0,0.7)',
+       })
+    }
   };
+  // const cancelHandleClick = () => {
+  //   const backDrop = document.querySelector('.backdrop')
+  //   backDrop.style.display = 'block' 
+  //   setPopup(!popup);
+  // }
 
   const currentDate = new Date()
   const [datas, setDatas] = useState(data);
@@ -128,7 +153,7 @@ function App() {
   // Delete invoice function
   const onDelete = (id) => {
     setPopup(prev => !prev)
-    backDrop.style.display = 'none'
+    setBackDrop({})
     setDatas((prev) => prev.filter((item) => item.id !== id));
   };
   
@@ -164,7 +189,7 @@ function App() {
   return (
     <BrowserRouter>
       <div >
-        <div className="backdrop"></div>
+        <div style={backDrop}></div>
         <Header handleClick={modeHandleCick} image={mode} />
         <section>
           <Routes>
