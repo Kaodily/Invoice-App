@@ -32,7 +32,6 @@ const [backDrop,setBackDrop] = useState({})
   }
   const [popup, setPopup] = useState(false);
   const modalHandleClick = () => {
-    // const backDrop = document.querySelector('.backdrop')
     setBackDrop({
     position: 'fixed',
    top:'0',
@@ -55,12 +54,6 @@ const [backDrop,setBackDrop] = useState({})
        })
     }
   };
-  // const cancelHandleClick = () => {
-  //   const backDrop = document.querySelector('.backdrop')
-  //   backDrop.style.display = 'block' 
-  //   setPopup(!popup);
-  // }
-
   const currentDate = new Date()
   const [datas, setDatas] = useState(data);
   const createdDate = currentDate.toISOString().slice(0,10)
@@ -96,7 +89,10 @@ const [backDrop,setBackDrop] = useState({})
         },
       ],
       total : ''
-    }
+    },
+    // validate: values => {
+    //   let errors = {}
+    // }
   });
   let dueDate ='';
   const getDueDate = () => {
@@ -117,7 +113,6 @@ const [backDrop,setBackDrop] = useState({})
 }
   // state for toggling dark and light image
   const [mode, setMode] = useState(sunImage);
-  // state for dark and light mode
  
   // state for dark and light mode
   const [bgColor, setBgColor] = useState({

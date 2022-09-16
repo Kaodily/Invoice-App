@@ -9,7 +9,7 @@ function FormFrom({ id, mode, data, formik }) {
             <label htmlFor="Street Address">Street Address</label>
             <br />
             <input
-              className="w-80 h-10 rounded-md bg-[#252945] mb-4 pl-2 mt-2"
+              className="w-[100%] h-10 rounded-md bg-[#252945] mb-4 pl-2 mt-2"
               style={mode}
               onChange={formik.handleChange}
               value={formik.values.senderAddress.street}
@@ -25,7 +25,7 @@ function FormFrom({ id, mode, data, formik }) {
                 </label>
                 <br />
                 <input
-                  className="w-36 h-10 rounded-md bg-[#252945]  pl-2 mb-4 mt-2"
+                  className="w-[100%] h-10 rounded-md bg-[#252945]  pl-2 mb-4 mt-2"
                   value={formik.values.senderAddress.city}
                   type="text"
                   id="City"
@@ -41,7 +41,7 @@ function FormFrom({ id, mode, data, formik }) {
                 </label>
                 <br />
                 <input
-                  className="w-36 mr-2 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2"
+                  className="w-[100%] mr-2 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2"
                   value={formik.values.senderAddress.postCode}
                   type="text"
                   id="Post Code"
@@ -57,7 +57,7 @@ function FormFrom({ id, mode, data, formik }) {
             </label>
             <br />
             <input
-              className="w-80 h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2 "
+              className="w-[100%] h-10 rounded-md bg-[#252945] pl-2  mb-4 mt-2 "
               value={formik.values.senderAddress.country}
               type="text"
               id="Country"
