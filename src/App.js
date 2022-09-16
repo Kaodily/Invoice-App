@@ -7,13 +7,20 @@ import Invoice from "./components/InvoiceInfo/Invoice";
 import Edit from "./components/EditPage/Edit";
 import data from "./components/data.json";
 import NewInvoice from "./components/New/NewInvoice";
-import {useFormik} from 'formik'
+import sunImage from './assets/icon-sun.svg'
+import moonImage from './assets/icon-moon.svg'
+import { useFormik } from 'formik'
+import './App.css'
 
 function App() {
-  let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  let numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
   let a = ''
   let b = ''
+  const body = document.querySelector('body')
+  const backDrop = document.querySelector('.backdrop')
+
+
   const random = (id) => {
     return Math.floor(Math.random() * id.length)
   }
@@ -23,7 +30,11 @@ function App() {
   for (let i = 0; i < 4; i++) {
     b += numbers[random(numbers)]
   }
-
+  const [popup, setPopup] = useState(false);
+  const modalHandleClick = () => {
+    backDrop.style.display = 'block'
+    setPopup(!popup);
+  };
 
   const currentDate = new Date()
   const [datas, setDatas] = useState(data);
@@ -62,8 +73,6 @@ function App() {
       total : ''
     }
   });
-  
-  
   let dueDate ='';
   const getDueDate = () => {
   // const currentDate = new Date()
@@ -81,23 +90,45 @@ function App() {
   }
     return dueDate
 }
- 
- 
   // state for toggling dark and light image
-  const [mode, setMode] = useState("./assets/icon-sun.svg");
+  const [mode, setMode] = useState(sunImage);
   // state for dark and light mode
-  const [color, setColor] = useState({
-    backgroundColor: "#141625",
-    color: "white",
-  });
+ 
   // state for dark and light mode
   const [bgColor, setBgColor] = useState({
     backgroundColor: "#1E2139",
     color: "white",
     boxShadow: "3px 3px 5px 0 gray",
   });
+  // event listener for light and dark mode
+  const modeHandleCick = () => {
+    setMode((prev) =>
+      prev === sunImage
+        ? moonImage
+        : sunImage
+    );
+   
+    body.classList.toggle('white')     
+    setBgColor((prev) =>
+      mode === sunImage
+        ? {
+            backgroundColor: "white",
+            color: "black",
+            transition: "0.7s",
+            boxShadow: "3px 3px 5px 0 gray",
+          }
+        : {
+            backgroundColor: "#1E2139",
+            color: "white",
+            transition: "0.7s",
+            boxShadow: "3px 3px 5px 0 gray",
+          }
+    );
+  };
   // Delete invoice function
   const onDelete = (id) => {
+    setPopup(prev => !prev)
+    backDrop.style.display = 'none'
     setDatas((prev) => prev.filter((item) => item.id !== id));
   };
   
@@ -113,14 +144,11 @@ function App() {
       setDatas(prev => data.filter(item => item.status === status))
     }  
  }
-  
-  
- 
  const dated = getDueDate()
   const newData = () => {
     formik.values.status = 'pending'
     formik.values.paymentDue = dated
-    setDatas([formik.values, ...datas,])
+    setDatas([formik.values, ...datas])
   }
   const draftClick = () => {
     formik.values.status = 'draft'
@@ -129,57 +157,26 @@ function App() {
   }
     
   const editHandleClick = (info) => {
-  let filtered = data.filter(item => item.id === info.values.id)
-   setDatas(prev => prev.filter(item => item.id !== info.values.id))
-    // setDatas([info.values, ...datas,])
+  let filtered = data.filter(item => item.id !== info.values.id)
+   setDatas(prev => filtered)
+    setDatas(prev => [info.values,...prev])
   }  
-  
-
-  // state for toggling dark and light image
-
-  // event listener for light and dark mode
-  const modeHandleCick = () => {
-    setMode((prev) =>
-      prev === "./assets/icon-sun.svg"
-        ? "./assets/icon-moon.svg"
-        : "./assets/icon-sun.svg"
-    );
-    setColor((prev) =>
-      mode === "./assets/icon-sun.svg"
-        ? { backgroundColor: "#F8F8FB", color: "black", transition: "0.5s" }
-        : { backgroundColor: "#141625", color: "white", transition: "0.5s" }
-    );
-    setBgColor((prev) =>
-      mode === "./assets/icon-sun.svg"
-        ? {
-            backgroundColor: "white",
-            color: "black",
-            transition: "0.7s",
-            boxShadow: "3px 3px 5px 0 gray",
-          }
-        : {
-            backgroundColor: "#1E2139",
-            color: "white",
-            transition: "0.7s",
-            boxShadow: "3px 3px 5px 0 gray",
-          }
-    );
-  };
   return (
     <BrowserRouter>
-      <div className="h-full" style={color}>
+      <div >
+        <div className="backdrop"></div>
         <Header handleClick={modeHandleCick} image={mode} />
-        <section className="">
+        <section>
           <Routes>
             {datas.length > 0 ? (
               <Route
                 path="/"
-                element={<Home data={datas} mode={bgColor} color={color} filterHandleClick={filterHandleClick} />}
+                element={<Home data={datas} mode={bgColor}  filterHandleClick={filterHandleClick} />}
               />
             ) : (
               <Route
                 path="/"
-                element={<EmptyInvoice data={datas} color={color} />}
+                element={<EmptyInvoice data={datas}  />}
               />
             )}
             <Route
@@ -189,14 +186,14 @@ function App() {
                   data={datas}
                   onDelete={onDelete}
                   mode={bgColor}
-                  color={color}
+                  handleClick={modalHandleClick}
+                  popup ={popup}
                 />
               }
-              exact
             />
             <Route
               path="/invoice/:id/:Edit"
-              element={<Edit data={datas} mode={bgColor} color={color}
+              element={<Edit data={datas} mode={bgColor} 
                 handleClick ={editHandleClick}
               />}
             />
@@ -205,7 +202,6 @@ function App() {
               element={
                 <NewInvoice
                   mode={bgColor}
-                  color={color}
                   handleClick={newData}
                   formik={formik}
                   draftClick={draftClick}

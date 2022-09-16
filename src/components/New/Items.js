@@ -1,6 +1,8 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react';
+// import Del from  "../assets/icon-delete.svg";
+
 function Items({formik,mode}) {
- 
+//  console.log(Del)
   let obj = [{
     itemName: 'Item Name',
     quantity: 'Qty',

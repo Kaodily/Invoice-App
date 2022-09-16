@@ -3,7 +3,7 @@ import Illustraton from "./Illustration";
 
 function EmptyInvoice({data,color}) {
     return (
-        <div className="h-screen">
+        <div >
             <Filter data={data.length} />
             <Illustraton color={color} />
         </div>

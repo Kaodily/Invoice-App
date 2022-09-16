@@ -2,7 +2,6 @@ function FormTo({ data, formik, mode }) {
   return (
     <div className="text-[#888EB0] px-6 text-[12px]">
       <h6 className="text-[12px] text-[#7C5DFA] font-bold mb-3">Bill From</h6>
-
       <form action="">
         <label className=" " htmlFor='Client"s Name'>
           Client's Name
@@ -44,7 +43,6 @@ function FormTo({ data, formik, mode }) {
           id="Street Address"
           style={mode}
           name="clientAddress.street"
-
         />
         <br />
         <div className="flex justify-between">
@@ -60,8 +58,7 @@ function FormTo({ data, formik, mode }) {
               type="text"
               id="City"
               style={mode}
-          name="clientAddress.city"
-
+              name="clientAddress.city"
             />
             <br />
           </div>
@@ -78,7 +75,6 @@ function FormTo({ data, formik, mode }) {
               type="text"
               id="Post Code"
               name="clientAddress.postCode"
-
             />
             <br />
           </div>
@@ -95,7 +91,6 @@ function FormTo({ data, formik, mode }) {
           type="text"
           id="Country"
           name="clientAddress.country"
-
         />
         <br />
         <label className=" " htmlFor="Invoice Date">
@@ -137,7 +132,6 @@ function FormTo({ data, formik, mode }) {
           type="text"
           style={mode}
           name="description"
-
           id="Project / Description"
         />
         <br />

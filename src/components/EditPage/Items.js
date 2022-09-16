@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+// import del from '....../assets/icon-delete.svg'
 function Items({ data, mode, formik }) {
   let obj = [{
     itemName: 'Item Name',
@@ -14,8 +15,6 @@ function Items({ data, mode, formik }) {
   const deleteHandleClick = (id) => {
   setItem(prev => prev.filter(item => item !== id))
   }
-  // let total = (formik.values.items[2].quantity && formik.values.items[2].price) ? formik.values.items[2].quantity * formik.values.items[2].price : ''
-
   const m = item.map((item, index) => {
     return (
       <div key={index}>
@@ -74,7 +73,7 @@ function Items({ data, mode, formik }) {
           <div>
               <img
                 onClick={() => deleteHandleClick(item)} 
-              src="../assets/icon-delete.svg"
+              src="./assets/icon-delete.svg"
               alt="delete"
               className="mt-10"
             />

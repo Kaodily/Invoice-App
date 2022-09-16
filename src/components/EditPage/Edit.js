@@ -1,20 +1,19 @@
 import { useParams } from "react-router-dom";
-// import Header from "./Header";
-import Back from "./Back"
+import Back from "../GoBack"
 import FormFrom from "./BillFrom";
 import FormTo from "./BillTo";
 import Items from "./Items";
 import Button from "./Button";
 import { useFormik } from 'formik'
 
-function Edit({data,mode,color,handleClick}) {
+function Edit({data,mode,handleClick}) {
   const { id } = useParams();
   const invoiceData = data.filter((item) => item.id === id);
   let looped;
   for (let each of invoiceData) {
     looped = each;
   }
-  let count = looped.items.length >= 2 ? '1' : 0
+  let count = looped.items.length >= 2 ? 1 : 0
   const editFormik = useFormik({
     initialValues: {
       id:looped.id,
@@ -56,10 +55,10 @@ function Edit({data,mode,color,handleClick}) {
     }
   });
   return (
-    <div className="">
+    <div>
       <Back
         id={id}
-        color ={color} 
+        // color ={color} 
       />
       <FormFrom id={id} data={looped} mode={mode} formik={editFormik} />
       <FormTo data ={looped}  mode={mode} formik={editFormik} />

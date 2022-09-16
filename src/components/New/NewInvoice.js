@@ -1,5 +1,5 @@
 // import Header from "../Homepage/Header";
-import Back from "./Back";
+import Back from "../GoBack";
 import BillFrom from "./BillFrom";
 import BillTo from "./BillTo";
 import Items from "./Items";
@@ -8,7 +8,7 @@ import Button from "./Button";
 
 function NewInvoice({ mode, color, handleClick, formik, draftClick }) {
   return (
-    <div>
+    <div >
       <Back color ={color} />
       <BillFrom formik={formik} mode={mode} />
       <BillTo formik={formik} mode={mode}/>

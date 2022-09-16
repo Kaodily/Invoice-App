@@ -55,31 +55,30 @@ function InvoiceData({ data, mode }) {
       : data.items
           .map((item) => item.price * item.quantity)
           .reduce((a, b) => a + b);
-  // console.log(looped)
   return (
     <Link
       to={{
         pathname: `/invoice/${data.id}`,
       }}
     >
-      <div className="p-4 m-5 sm:mt-8 rounded-md" style={mode}>
+      <div className="p-4 m-5 sm:mt-8 rounded-md" style={mode} >
         <div className="flex justify-between ">
-        <div className=" md:flex md:justify-start mb-5">
-          <p className="text-[13px] font-bold">#{data.id}</p>
-            <h4 className="text-[15px] font-bold mt-1">£{looped}</h4>
+        <div className=" md:flex md:justify-start mb-2">
+          <p className="text-[13px] font-bold mb-2">#{data.id}</p>
+            <p className="text-[12px]  font-bold text-[#888EB0]">
+              Due {data.paymentDue}
+            </p>
           </div>
-          <p className="text-[13px]  font-bold text-[#888EB0]">
+          <p className="text-[13px] font-bold text-[#888EB0]">
             {data.clientName}
           </p>
         </div>
         <div className ="">
-        
           <div className="flex justify-between">
-          <p className="text-[12px]  font-bold text-[#888EB0]">
-              Due {data.paymentDue}
-            </p>
+          <h4 className="text-[15px] font-bold mt-1">£{looped}</h4>
+         
           <div
-            className="w-20 text-center flex justify-center item-center rounded-md pt-1 h-9 bg-black"
+            className="w-20 text-center flex justify-center item-center rounded-md pt-1 h-9 mt-[-5px]"
             style={statusStyle}
           >
             <div

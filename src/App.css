@@ -1,0 +1,29 @@
+/* body {
+    background-color: #141625  ;
+} */
+.white{
+        background-color: #F8F8FB;
+        transition: 0.7s;
+        color : black;
+        box-shadow: 3px 3px 5px 0 gray;
+    
+}
+body{
+    background-color: #141625;
+    color: white;
+    transition: 0.7s;
+    box-shadow: 3px 3px 5px 0 gray;
+}
+.backdrop{
+   position: fixed;
+   top:0;
+   width:100vw;
+   height:100vh;
+   z-index:2;
+   background:rgb(0, 0, 0,0.7);
+   display:none;
+}
+.slide-left {
+	-webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}

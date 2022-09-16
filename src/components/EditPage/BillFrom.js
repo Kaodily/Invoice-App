@@ -1,5 +1,4 @@
 function FormFrom({ id, mode, data, formik }) {
-  // console.log(props)
   return (
     <div className="text-[#888EB0] px-6 text-[12px]">
       <div>
@@ -14,7 +13,7 @@ function FormFrom({ id, mode, data, formik }) {
               style={mode}
               onChange={formik.handleChange}
               value={formik.values.senderAddress.street}
-             name="senderAddress.street"
+              name="senderAddress.street"
               type="text"
               id="Street Address"
             />
@@ -31,8 +30,7 @@ function FormFrom({ id, mode, data, formik }) {
                   type="text"
                   id="City"
                   style={mode}
-          name="senderAddress.city"
-
+                  name="senderAddress.city"
                   onChange={formik.handleChange}
                 />
                 <br />
@@ -47,8 +45,7 @@ function FormFrom({ id, mode, data, formik }) {
                   value={formik.values.senderAddress.postCode}
                   type="text"
                   id="Post Code"
-          name="senderAddress.postCode"
-
+                  name="senderAddress.postCode"
                   style={mode}
                   onChange={formik.handleChange}
                 />
@@ -65,7 +62,7 @@ function FormFrom({ id, mode, data, formik }) {
               type="text"
               id="Country"
               style={mode}
-          name="senderAddress.country"
+              name="senderAddress.country"
               onChange={formik.handleChange}
             />
             <br />
