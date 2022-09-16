@@ -157,11 +157,11 @@ const [backDrop,setBackDrop] = useState({})
     if (status === 'all') {
      setDatas(data)
     } else if (status === 'paid') {
-      setDatas(prev => data.filter(item => item.status === status))
+      setDatas(prev => prev.filter(item => item.status === status))
     } else if (status === 'pending') {
-      setDatas(prev => data.filter(item => item.status === status))
+      setDatas(prev => prev.filter(item => item.status === status))
     } else if (status === 'draft') {
-      setDatas(prev => data.filter(item => item.status === status))
+      setDatas(prev => prev.filter(item => item.status === status))
     }  
  }
  const dated = getDueDate()
