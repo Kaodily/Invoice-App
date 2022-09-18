@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Header from "./components/Header";
 import Home from "./components/Homepage/Home";
 import EmptyInvoice from "./components/EmptyHomePage/EmptyInvoice";
@@ -18,8 +18,7 @@ function App() {
   let a = ''
   let b = ''
   const body = document.querySelector('body')
- 
-  
+
 const [backDrop,setBackDrop] = useState({})
   const random = (id) => {
     return Math.floor(Math.random() * id.length)
@@ -32,14 +31,6 @@ const [backDrop,setBackDrop] = useState({})
   }
   const [popup, setPopup] = useState(false);
   const modalHandleClick = () => {
-    setBackDrop({
-    position: 'fixed',
-   top:'0',
-   width:'100vw',
-   height:'100vh',
-   zIndex:'2',
-   backgroundColor:'rgb(0, 0, 0,0.7)',
-   })
     setPopup(!popup);
     if (popup) {
       setBackDrop({})
@@ -96,15 +87,12 @@ const [backDrop,setBackDrop] = useState({})
   });
   let dueDate ='';
   const getDueDate = () => {
-  // const currentDate = new Date()
   if (formik.values.paymentTerms === 'Net 30days') {
     currentDate.setDate(currentDate.getDate() + 30).toLocaleString()
    dueDate = currentDate.toISOString().slice(0,10)
   } else if (formik.values.paymentTerms === 'Net 60days') {
     currentDate.setDate(currentDate.getDate() + 60).toLocaleString()
      dueDate =currentDate.toISOString().slice(0,10)
-    // console.log(dueDate)
-
   } else if(formik.values.paymentTerms === 'Net 90days'){
     currentDate.setDate(currentDate.getDate() + 90).toLocaleString()
     dueDate =currentDate.toISOString().slice(0,10)
@@ -179,58 +167,59 @@ const [backDrop,setBackDrop] = useState({})
   const editHandleClick = (info) => {
   let filtered = data.filter(item => item.id !== info.values.id)
    setDatas(prev => filtered)
-    setDatas(prev => [info.values,...prev])
+   setDatas(prev => [info.values,...prev])
   }  
+
   return (
     <BrowserRouter>
       <div >
-        <div style={backDrop}></div>
-        <Header handleClick={modeHandleCick} image={mode} />
-        <section>
-          <Routes>
-            {datas.length > 0 ? (
-              <Route
-                path="/"
-                element={<Home data={datas} mode={bgColor}  filterHandleClick={filterHandleClick} />}
+      <div style={backDrop}></div>
+      <Header handleClick={modeHandleCick} image={mode} />
+      <section>
+        <Routes>
+          {datas.length > 0 ? (
+            <Route
+              path="/"
+              element={<Home data={datas} mode={bgColor}  filterHandleClick={filterHandleClick} />}
+            />
+          ) : (
+            <Route
+              path="/"
+              element={<EmptyInvoice data={datas}  />}
+            />
+          )}
+          <Route
+            path="/invoice/:id"
+            element={
+              <Invoice
+                data={datas}
+                onDelete={onDelete}
+                mode={bgColor}
+                handleClick={modalHandleClick}
+                popup ={popup}
               />
-            ) : (
-              <Route
-                path="/"
-                element={<EmptyInvoice data={datas}  />}
+            }
+          />
+          <Route
+            path="/invoice/:id/:Edit"
+            element={<Edit data={datas} mode={bgColor} 
+              handleClick ={editHandleClick}
+            />}
+          />
+          <Route
+            path="/New"
+            element={
+              <NewInvoice
+                mode={bgColor}
+                handleClick={newData}
+                formik={formik}
+                draftClick={draftClick}
               />
-            )}
-            <Route
-              path="/invoice/:id"
-              element={
-                <Invoice
-                  data={datas}
-                  onDelete={onDelete}
-                  mode={bgColor}
-                  handleClick={modalHandleClick}
-                  popup ={popup}
-                />
-              }
-            />
-            <Route
-              path="/invoice/:id/:Edit"
-              element={<Edit data={datas} mode={bgColor} 
-                handleClick ={editHandleClick}
-              />}
-            />
-            <Route
-              path="/New"
-              element={
-                <NewInvoice
-                  mode={bgColor}
-                  handleClick={newData}
-                  formik={formik}
-                  draftClick={draftClick}
-                />
-              }
-            />
-          </Routes>
-        </section>
-      </div>
+            }
+          />
+        </Routes>
+      </section>
+    </div>
     </BrowserRouter>
   );
 }

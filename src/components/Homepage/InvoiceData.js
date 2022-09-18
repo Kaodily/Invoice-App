@@ -54,14 +54,16 @@ function InvoiceData({ data, mode }) {
           .reduce((a, b) => a + b)
       : data.items
           .map((item) => item.price * item.quantity)
-          .reduce((a, b) => a + b);
+        .reduce((a, b) => a + b);
+  // const date = new Date(data.paymentDue)
+  // console.log(date)
   return (
     <Link
       to={{
         pathname: `/invoice/${data.id}`,
       }}
     >
-      <div className="p-4 m-5 sm:mt-8 rounded-md" style={mode} >
+      <section className="p-4 m-5 sm:mt-8 rounded-md" style={mode} >
         <div className="flex justify-between ">
         <div className=" md:flex md:justify-start mb-2">
           <p className="text-[13px] font-bold mb-2">#{data.id}</p>
@@ -91,7 +93,7 @@ function InvoiceData({ data, mode }) {
           </div>
           </div>
         </div>
-      </div>
+      </section>
     </Link>
   );
 }

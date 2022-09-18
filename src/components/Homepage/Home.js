@@ -11,9 +11,9 @@ function Home({data,mode,filterHandleClick}) {
   const handleClick = () => {
      setInput(!input)
   }
+ 
  return (
-    <div className="sm:mt-7">
-      <section>
+       <section className="sm:mt-7">
            <Navigation handleClick={handleClick} data={data.length} />
            <Filtered input={input}
              filterHandleClick={filterHandleClick}
@@ -22,7 +22,6 @@ function Home({data,mode,filterHandleClick}) {
         {datas}
       </section>
 
-    </div>
   );
 }
 export default Home;
