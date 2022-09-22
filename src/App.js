@@ -81,9 +81,7 @@ const [backDrop,setBackDrop] = useState({})
       ],
       total : ''
     },
-    // validate: values => {
-    //   let errors = {}
-    // }
+
   });
   let dueDate ='';
   const getDueDate = () => {
