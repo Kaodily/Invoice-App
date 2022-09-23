@@ -7,7 +7,10 @@ function Button({handleClick,mode,draftClick}) {
           Discard
         </button>
       </Link>
+      <Link to={'/'}>
       <button className="w-24 h-8 bg-[#373B53] py-1 mr-2 rounded-2xl" onClick={draftClick}>Saved as Draft</button>
+        
+      </Link>
       <Link to={'/'}>
       <button className="w-[120px] h-8 bg-[#7C5DFA] py-1 rounded-2xl" onClick={handleClick}>
         Save and Send
