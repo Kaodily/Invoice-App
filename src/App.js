@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import React, { useState, useContext} from "react";
+import React, { useState,  createContext} from "react";
 import Header from "./components/Header";
 import Home from "./components/Homepage/Home";
 import EmptyInvoice from "./components/EmptyHomePage/EmptyInvoice";
@@ -12,6 +12,8 @@ import moonImage from './assets/icon-moon.svg'
 import { useFormik } from 'formik'
 import './App.css'
 
+
+ export const DataContext = createContext(0)
 function App() {
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
@@ -98,7 +100,7 @@ const [backDrop,setBackDrop] = useState({})
     return dueDate
 }
   // state for toggling dark and light image
-  const [mode, setMode] = useState(sunImage);
+  const [image, setImage] = useState(sunImage);
  
   // state for dark and light mode
   const [bgColor, setBgColor] = useState({
@@ -107,8 +109,8 @@ const [backDrop,setBackDrop] = useState({})
     boxShadow: "3px 3px 5px 0 gray",
   });
   // event listener for light and dark mode
-  const modeHandleCick = () => {
-    setMode((prev) =>
+  const modeHandleClick = () => {
+    setImage((prev) =>
       prev === sunImage
         ? moonImage
         : sunImage
@@ -116,7 +118,7 @@ const [backDrop,setBackDrop] = useState({})
    
     body.classList.toggle('white')     
     setBgColor((prev) =>
-      mode === sunImage
+      image === sunImage
         ? {
             backgroundColor: "white",
             color: "black",
@@ -167,41 +169,40 @@ const [backDrop,setBackDrop] = useState({})
    setDatas(prev => filtered)
    setDatas(prev => [info.values,...prev])
   }  
-
+  const clicker = () => {
+    // const looped = datas.map(item => item.status=== 'pending'? item.status = 'paid':console.log('no'))
+    console.log(datas.status)
+  }
   return (
     <BrowserRouter>
-      <div >
+    <DataContext.Provider value={{datas,modeHandleClick,filterHandleClick,bgColor,onDelete,modalHandleClick,editHandleClick,newData,draftClick,clicker}}>
       <div style={backDrop}></div>
-      <Header handleClick={modeHandleCick} image={mode} />
+      <Header  image={image} />
       <section>
         <Routes>
           {datas.length > 0 ? (
             <Route
               path="/"
-              element={<Home data={datas} mode={bgColor}  filterHandleClick={filterHandleClick} />}
+              element={<Home/>}
             />
           ) : (
             <Route
               path="/"
-              element={<EmptyInvoice data={datas}  />}
+              element={<EmptyInvoice />}
             />
           )}
           <Route
             path="/invoice/:id"
             element={
               <Invoice
-                data={datas}
-                onDelete={onDelete}
-                mode={bgColor}
-                handleClick={modalHandleClick}
                 popup ={popup}
               />
             }
           />
           <Route
             path="/invoice/:id/:Edit"
-            element={<Edit data={datas} mode={bgColor} 
-              handleClick ={editHandleClick}
+            element={<Edit mode={bgColor} 
+             
             />}
           />
           <Route
@@ -209,15 +210,13 @@ const [backDrop,setBackDrop] = useState({})
             element={
               <NewInvoice
                 mode={bgColor}
-                handleClick={newData}
                 formik={formik}
-                draftClick={draftClick}
               />
             }
           />
         </Routes>
       </section>
-    </div>
+      </DataContext.Provider>
     </BrowserRouter>
   );
 }

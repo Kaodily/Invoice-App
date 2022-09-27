@@ -5,10 +5,13 @@ import Informations from "./Informations";
 import ItemDetails from "./ItemDetails";
 import Buttton from "./Button";
 import Delete from "./Delete";
+import { useContext } from "react";
+import { DataContext } from "../../App";
 
-function Invoice({data,onDelete,mode,popup,handleClick}) {
+function Invoice({ popup}) {
+  const {datas,bgColor} = useContext(DataContext)
   const { id } = useParams();
-  const invoiceData = data.filter((item) => item.id === id);
+  const invoiceData = datas.filter((item) => item.id === id);
   let looped;
   for (let each of invoiceData) {
     looped = each;
@@ -16,13 +19,13 @@ function Invoice({data,onDelete,mode,popup,handleClick}) {
   return (
     <div className="">
       <Back />
-      <Status info={looped.status} mode={mode} />
-      <div className="mx-8 mt-4 mb-5 p-2 " style={mode}>
-        <Informations data={looped} mode={mode} />
-        <ItemDetails item={looped} mode={mode} data ={data} />
+      <Status info={looped.status} mode={bgColor} />
+      <div className="mx-8 mt-4 mb-5 p-2 " style={bgColor}>
+        <Informations data={looped} mode={bgColor} />
+        <ItemDetails item={looped} mode={bgColor} data ={bgColor} />
       </div>
-      <Buttton handleClick={handleClick} id={id} mode={mode} status={looped.status} />
-      <Delete id={id} pop={popup} handleClick={handleClick} mode={mode} onDelete={onDelete} />
+      <Buttton  id={id} mode={bgColor} status={looped.status} />
+      <Delete id={id} pop={popup}  mode={bgColor}  />
     </div>
   );
 }

@@ -1,11 +1,14 @@
+import { useContext } from "react";
+import { DataContext } from "../../App";
 import Filter from "../Homepage/Navigation";
 import Illustraton from "./Illustration";
 
-function EmptyInvoice({data,color}) {
+function EmptyInvoice() {
+   const {data} = useContext(DataContext)
     return (
         <div >
-            <Filter data={data.length} />
-            <Illustraton color={color} />
+            <Filter data ={data.length} />
+            <Illustraton />
         </div>
     )
 }

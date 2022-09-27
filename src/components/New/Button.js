@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-function Button({handleClick,mode,draftClick}) {
+import { DataContext } from "../../App";
+function Button({mode}) {
+  const { newData, draftClick } =useContext(DataContext)
   return (
     <div className="text-[12px] flex justify-end px-6 h-[60px] bg-[#1E2139] text-[#888EB0] pt-4" style={mode} >
       <Link to={'/'}>
@@ -12,7 +15,7 @@ function Button({handleClick,mode,draftClick}) {
         
       </Link>
       <Link to={'/'}>
-      <button className="w-[120px] h-8 bg-[#7C5DFA] py-1 rounded-2xl" onClick={handleClick}>
+      <button className="w-[120px] h-8 bg-[#7C5DFA] py-1 rounded-2xl" onClick={newData}>
         Save and Send
       </button>
      </Link>

@@ -6,14 +6,14 @@ import Items from "./Items";
 import Button from "./Button";
 
 
-function NewInvoice({ mode, color, handleClick, formik, draftClick }) {
+function NewInvoice({ mode,  formik }) {
   return (
     <div >
-      <Back color ={color} />
+      <Back />
       <BillFrom formik={formik} mode={mode} />
       <BillTo formik={formik} mode={mode}/>
       <Items formik={formik} mode={mode}  />
-      <Button mode={mode} handleClick={handleClick} draftClick={draftClick} />
+      <Button mode={mode}  />
     </div>
   );
 }

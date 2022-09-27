@@ -5,10 +5,13 @@ import FormTo from "./BillTo";
 import Items from "./Items";
 import Button from "./Button";
 import { useFormik } from 'formik'
+import { useContext } from "react";
+import { DataContext } from "../../App";
 
-function Edit({data,mode,handleClick}) {
+function Edit({ mode, handleClick }) {
+ const {datas} = useContext(DataContext)
   const { id } = useParams();
-  const invoiceData = data.filter((item) => item.id === id);
+  const invoiceData = datas.filter((item) => item.id === id);
   let looped;
   for (let each of invoiceData) {
     looped = each;
@@ -56,9 +59,7 @@ function Edit({data,mode,handleClick}) {
   });
   return (
     <div>
-      <Back
-        id={id}
-        // color ={color} 
+      <Back id={id}
       />
       <FormFrom id={id} data={looped} mode={mode} formik={editFormik} />
       <FormTo data ={looped}  mode={mode} formik={editFormik} />
