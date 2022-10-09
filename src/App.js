@@ -13,7 +13,9 @@ import { useFormik } from 'formik'
 import './App.css'
 
 
- export const DataContext = createContext(0)
+export const DataContext = createContext(0)
+
+
 function App() {
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
@@ -21,7 +23,7 @@ function App() {
   let b = ''
   const body = document.querySelector('body')
 
-const [backDrop,setBackDrop] = useState({})
+  const [backDrop,setBackDrop] = useState({})
   const random = (id) => {
     return Math.floor(Math.random() * id.length)
   }
@@ -169,13 +171,18 @@ const [backDrop,setBackDrop] = useState({})
    setDatas(prev => filtered)
    setDatas(prev => [info.values,...prev])
   }  
-  const clicker = () => {
-    // const looped = datas.map(item => item.status=== 'pending'? item.status = 'paid':console.log('no'))
-    console.log(datas.status)
+  const markAsPaid = (id) => {
+    const newState = datas.map(data => {
+      if (data.id === id) {
+      return {...data, status:'paid'}
+      }
+      return data
+   })
+   setDatas(newState)
   }
   return (
     <BrowserRouter>
-    <DataContext.Provider value={{datas,modeHandleClick,filterHandleClick,bgColor,onDelete,modalHandleClick,editHandleClick,newData,draftClick,clicker}}>
+    <DataContext.Provider value={{datas,modeHandleClick,filterHandleClick,bgColor,onDelete,modalHandleClick,editHandleClick,newData,draftClick,markAsPaid}}>
       <div style={backDrop}></div>
       <Header  image={image} />
       <section>

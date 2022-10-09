@@ -71,10 +71,10 @@ function Items({ data, mode, formik }) {
             </div>
             <div>
               <img
-                src="./image/icon-delete.svg"
+                src="../../image/icon-delete.svg"
                 onClick={() => deleteHandleClick(item)}
                 alt="delete"
-                className="mt-10 "
+                className="mt-10 w-5 "
               />
             </div>
           </div>
@@ -143,10 +143,10 @@ function Items({ data, mode, formik }) {
 
           <div>
             <img
-              src="./image/icon-delete.svg"
+              src="../../image/icon-delete.svg"
               alt="delete"
               onClick={() => deleteHandleClick(item)}
-              className="mt-10"
+              className="mt-10 w-5"
             />
           </div>
         </div>

@@ -4,10 +4,10 @@ import Filter from "../Homepage/Navigation";
 import Illustraton from "./Illustration";
 
 function EmptyInvoice() {
-   const {data} = useContext(DataContext)
+   const {datas} = useContext(DataContext)
     return (
         <div >
-            <Filter data ={data.length} />
+            <Filter data ={datas.length} />
             <Illustraton />
         </div>
     )
